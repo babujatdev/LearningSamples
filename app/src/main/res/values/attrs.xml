@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ImageFadingStyle">
+        <attr name="fadeRight" format="integer"/>
+        <attr name="fadeLeft"  format="integer"/>
+        <attr name="fadeTop" format="integer"/>
+        <attr name="fadeBottom" format="integer"/>
+        <attr name="fadeLength" format="integer"/>
+        <attr name="enableRightFadeEdge" format="boolean"/>
+        <attr name="enableLeftFadeEdge" format="boolean"/>
+        <attr name="enableTopFadeEdge" format="boolean"/>
+        <attr name="enableBottomFadeEdge" format="boolean"/>
+    </declare-styleable>
+</resources>
