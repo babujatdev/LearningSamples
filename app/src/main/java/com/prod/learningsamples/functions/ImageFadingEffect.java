@@ -1,11 +1,11 @@
 package com.prod.learningsamples.functions;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -20,11 +20,11 @@ public class ImageFadingEffect extends AppCompatImageView {
     public boolean mFadeTop;
     public boolean mFadeBottom;
     TypedArray ta;
-    float fadeRight = 0;
-    float fadeLeft = 0;
-    float fadeTop = 0;
-    float fadeBottom = 0;
-    float fadeLength = 0;
+    boolean fadeRight = false;
+    boolean fadeLeft = false;
+    boolean fadeTop = false;
+    boolean fadeBottom = false;
+    int fadeLength = 0;
 
     public ImageFadingEffect(Context context) {
         super(context);
@@ -46,22 +46,23 @@ public class ImageFadingEffect extends AppCompatImageView {
 
     private void init(@Nullable AttributeSet set) {
         try {
+            ta = getContext().obtainStyledAttributes(set, R.styleable.ImageFadingEffect);
+            fadeRight = ta.getBoolean(R.styleable.ImageFadingEffect_fadeRight, false);
+            fadeLeft = ta.getBoolean(R.styleable.ImageFadingEffect_fadeLeft, false);
+            fadeTop = ta.getBoolean(R.styleable.ImageFadingEffect_fadeTop, false);
+            fadeBottom = ta.getBoolean(R.styleable.ImageFadingEffect_fadeBottom, false);
+            fadeLength = ta.getInteger(R.styleable.ImageFadingEffect_fadeLength, fadeLength);
+
             // Enable horizontal fading
             this.setHorizontalFadingEdgeEnabled(true);
-            //Apply vertical fading
+            // Apply vertical fading
             this.setVerticalFadingEdgeEnabled(true);
             // Apply default fading length
-            this.setEdgeLength(14);
-            ta = getContext().obtainStyledAttributes(set, R.styleable.ImageFadingStyle);
-            fadeRight = ta.getInteger(R.styleable.ImageFadingStyle_fadeRight,0);
-            fadeLeft = ta.getInteger(R.styleable.ImageFadingStyle_fadeLeft,0);
-            fadeTop = ta.getInteger(R.styleable.ImageFadingStyle_fadeTop,0);
-            fadeBottom = ta.getInteger(R.styleable.ImageFadingStyle_fadeBottom,0);
-            fadeLength = ta.getInteger(R.styleable.ImageFadingStyle_fadeLength,0);
-            mFadeRight = ta.getBoolean(R.styleable.ImageFadingStyle_enableRightFadeEdge,false);
-            mFadeLeft = ta.getBoolean(R.styleable.ImageFadingStyle_enableLeftFadeEdge,false);
-            mFadeTop = ta.getBoolean(R.styleable.ImageFadingStyle_enableTopFadeEdge,false);
-            mFadeBottom = ta.getBoolean(R.styleable.ImageFadingStyle_enableBottomFadeEdge,false);
+            this.setEdgeLength(fadeLength);
+            this.setFadeRight(fadeRight);
+            this.setFadeLeft(fadeLeft);
+            this.setFadeTop(fadeTop);
+            this.setFadeBottom(fadeBottom);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -69,6 +70,21 @@ public class ImageFadingEffect extends AppCompatImageView {
         }
     }
 
+    public void setFadeRight(boolean fadeRight) {
+        mFadeRight = fadeRight;
+    }
+
+    public void setFadeLeft(boolean fadeLeft) {
+        mFadeLeft = fadeLeft;
+    }
+
+    public void setFadeTop(boolean fadeTop) {
+        mFadeTop = fadeTop;
+    }
+
+    public void setFadeBottom(boolean fadeBottom) {
+        mFadeBottom = fadeBottom;
+    }
 
     public void setEdgeLength(int length) {
         this.setFadingEdgeLength(getPixels(length));

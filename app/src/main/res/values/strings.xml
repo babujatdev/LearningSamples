@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">LearningSamples</string>
     <string name="image">image</string>
+    <string name="itemName">Item Name</string>
+    <string name="size">Size</string>
+    <string name="price">Price</string>
+    <string name="strikeOffPrice">strikeOffPrice</string>
+    <string name="description">Description</string>
 </resources>
